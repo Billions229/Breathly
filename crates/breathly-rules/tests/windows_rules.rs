@@ -4,7 +4,7 @@ use breathly_rules::{Os, PathRoot, RiskLevel, Rule, Target, load_cleanup_rules};
 
 fn embedded_rule(id: &str) -> Rule {
     load_cleanup_rules()
-        .unwrap()
+        .unwrap_or_else(|error| panic!("{error}"))
         .into_iter()
         .find(|rule| rule.id().as_str() == id)
         .unwrap_or_else(|| panic!("règle « {id} » absente de rules/"))
