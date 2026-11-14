@@ -23,7 +23,14 @@ Le test borne le poids des WOFF2 à 150 Kio : environ 1 % du budget d'installeur
 
 ## Taille des installeurs
 
-La mesure de 2,78 Mio de l'ADR 0008 porte sur la page vide, avant ces polices. Les `.deb` et `.rpm` avec les polices n'ont pas été mesurés dans cette PR : cet environnement Windows ne dispose pas d'un outil de construction Linux. Le `.msi` reste également à mesurer lors d'une construction Windows, comme prévu par l'ADR 0008. Le poids brut des quatre WOFF2 (105 852 o) est documenté ci-dessus, mais ne remplace pas une mesure des paquets construits.
+Mesure par le job Linux de CI, le 2026-11-14, sur le commit `0f3aec7` :
+
+| Paquet | Taille construite |
+|---|---:|
+| `.deb` | 3 040 572 o (environ 2,90 Mio) |
+| `.rpm` | 3 044 258 o (environ 2,90 Mio) |
+
+Les deux paquets respectent le budget strict de 15 000 000 o défini dans l'ADR 0008. Le job CI construit ces formats et échoue si l'un d'eux atteint ou dépasse cette limite. Le `.msi` reste à mesurer lors d'une construction Windows, comme prévu par l'ADR 0008.
 
 ## Régénération
 
